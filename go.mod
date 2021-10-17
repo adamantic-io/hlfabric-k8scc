@@ -6,7 +6,7 @@ require (
 	github.com/Shopify/sarama v1.27.2 // indirect
 	github.com/fsouza/go-dockerclient v1.6.3 // indirect
 	github.com/hashicorp/go-version v1.2.1 // indirect
-	github.com/hyperledger/fabric v1.4.0-rc1.0.20201118191903-ec81f3e74fa1
+	github.com/hyperledger/fabric v1.4.0-rc1.0.20210909064358-99553020d277
 	github.com/hyperledger/fabric-amcl v0.0.0-20200424173818-327c9e2cf77a // indirect
 	github.com/hyperledger/fabric-protos-go v0.0.0-20201028172056-a3136dde2354
 	github.com/otiai10/copy v1.1.2-0.20200311132357-7ca34007d073
