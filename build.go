@@ -198,7 +198,7 @@ func createBuilderPod(ctx context.Context,
 					Image:           image,
 					ImagePullPolicy: apiv1.PullIfNotPresent,
 					Command: []string{
-						"/bin/sh", "-c", buildOpts.Cmd + "; while true; do sleep 30; done;",
+						"/bin/sh", "-c", "if [ -x /chaincode/build.sh ]; then /chaincode/build.sh else cp -R /chaincode/input/src/. /chaincode/output && cd /chaincode/output && npm install --production; fi; while true; do sleep 30; done;", //buildOpts.Cmd
 					},
 					Env:       envvars,
 					Resources: apiv1.ResourceRequirements{Limits: limits},
