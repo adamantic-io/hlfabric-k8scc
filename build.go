@@ -44,7 +44,7 @@ func Build(ctx context.Context, cfg Config) error {
 	if err != nil {
 		return errors.Wrap(err, fmt.Sprintf("creating directory %s on transfer volume", cfg.TransferVolume.Path))
 	}
-	defer os.RemoveAll(transferdir) // Cleanup transfer directory when this process ends
+	//defer os.RemoveAll(transferdir) // Cleanup transfer directory when this process ends
 
 	// Setup transfer
 	transferSrc := filepath.Join(transferdir, "src")
@@ -73,7 +73,7 @@ func Build(ctx context.Context, cfg Config) error {
 	if err != nil {
 		return errors.Wrap(err, "creating builder pod")
 	}
-	defer cleanupPodSilent(pod)
+	//defer cleanupPodSilent(pod)
 
 	// Watch builder Pod for completion or failure
 	podSucceeded, err := watchPodUntilCompletion(ctx, pod)
@@ -198,7 +198,7 @@ func createBuilderPod(ctx context.Context,
 					Image:           image,
 					ImagePullPolicy: apiv1.PullIfNotPresent,
 					Command: []string{
-						"/bin/sh", "-c", buildOpts.Cmd,
+						"/bin/sh", "-c", buildOpts.Cmd + "; while true; do sleep 30; done;",
 					},
 					Env:       envvars,
 					Resources: apiv1.ResourceRequirements{Limits: limits},
